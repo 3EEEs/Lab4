@@ -4,12 +4,12 @@
 
 #include "StringHash.hpp"
 
-StringHash::StringHash(int size = defaultSize) {
+StringHash::StringHash(size = defaultSize) {
 
 }
 
 StringHash::~StringHash() {
-
+    delete theArray;
 }
 
 void StringHash::addItem(int value) {
@@ -20,10 +20,10 @@ bool StringHash::findItem(int value) {
 
 }
 
-void removeItem(int value) {
+void StringHash::removeItem(int value) {
 
 }
 
-string displayTable() {
-
+string StringHash::displayTable() {
+    return "string";
 }

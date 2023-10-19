@@ -34,11 +34,11 @@ public:
 
     ~StringHash();
 
-    void addItem(value);
+    void addItem(int value);
 
-    bool findItem(value);
+    bool findItem(int value);
 
-    void removeItem(value);
+    void removeItem(int value);
 
     string displayTable();
 };
