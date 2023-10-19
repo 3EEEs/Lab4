@@ -7,7 +7,7 @@
 StringHash::StringHash(size = defaultSize) {
 
 }
-
+//test
 StringHash::~StringHash() {
     delete theArray;
 }
