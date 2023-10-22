@@ -25,17 +25,15 @@ int StringHash::hashFunc(string key) {
 }
 
 //Constructor
-StringHash::StringHash(): arraySize(arraySize), temp(0), head(nullptr) {
-    if(arraySize > defaultSize) {
-            theArray = new string[arraySize];
+StringHash::StringHash(): temp(0), head(nullptr) {
+    if (arraySize < defaultSize) {
+        arraySize = defaultSize;
     } else {
-        theArray = new string[defaultSize];
+        arraySize = defaultSize;
     }
 
-    count = 0;
-    index = 0;
+    theArray = new string[arraySize];
 
-    //Init all to empty (-1)
     for (int i = 0; i < arraySize; i++) {
         theArray[i] = EMPTY;
     }
@@ -60,11 +58,12 @@ void StringHash::addItem(string value) {
         if (index >= arraySize) {
             index = 0;
         }
-
-        count++;
-
-        theArray[index] = value;
     }
+
+    count++;
+
+    theArray[index] = value;
+    cout << YEL << theArray[index] << CLEAR << endl;
 
 }
 
@@ -88,7 +87,21 @@ bool StringHash::findItem(string value) {
 }
 
 void StringHash::removeItem(string value) {
+index = hashFunc(value);
 
+    bool done = false;
+
+    while (theArray[index] != EMPTY && !done) {
+        if (theArray[index] == value) {
+            done = true;
+            theArray[index] = DELETED;
+        } else {
+            index++;
+            if(index >= arraySize) {
+                index = 0;
+            }
+        }
+    }
 }
 
 string StringHash::displayTable() {
