@@ -5,26 +5,36 @@
 #ifndef LAB4_CHAINHASH_HPP
 #define LAB4_CHAINHASH_HPP
 
-#include <iostream>
-#include <sstream>
+#include "StringHash.hpp"
+#include "ChainLink.hpp"
 
 using namespace std;
 
 class ChainHash {
-    int value;
-    ChainHash* next;
+private:
+
 
 public:
-// constructor
-    explicit ChainHash(int val) : value(val), next(nullptr) {}
+    // constructor
+
+    //Destructor
+
+    //Additem
+
+    //FindItem
+
+    //RemoveItem
+
+    //DisplayTable
+
 
 // access methods ? might not use
 
-    ChainHash* getNext() {
+    ChainLink* getNext() {
         return this->next;
     }
 
-    void setNext(ChainHash* next) {
+    void setNext(ChainLink* next) {
         this->next = next;
     }
 };
