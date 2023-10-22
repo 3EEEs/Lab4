@@ -5,7 +5,7 @@
 #include "StringHash.hpp"
 
 //Helper Functions
-int StringHash::hashFunc(int key) {
+int StringHash::hashFunc(string key) {
         // initialize index
         int hashValue = 0;
 
@@ -25,26 +25,47 @@ int StringHash::hashFunc(int key) {
 }
 
 //Constructor
-StringHash::StringHash(): head(nullptr), tail(nullptr), lastFoundNode(nullptr) {
-    if (size > defaultSize) {
-        size = defaultSize;
+StringHash::StringHash(int arraySize, int size): arraySize(arraySize) {
+    if(size > defaultSize) {
+            theArray = new int[arraySize];
+    } else {
+        theArray = new int[defaultSize];
     }
 
-    this->size = size;
+    count = 0;
+    index = 0;
+
+    //Init all to empty (-1)
+    for (int i = 0; i < arraySize; i++) {
+        theArray[i] = -1;
+    }
+
 }
-//test
+
+//Destructor /Must update
 StringHash::~StringHash() {
     delete theArray;
 }
 
 void StringHash::addItem(int value) {
-    temp = new theArray[value];
+    if (count >= arraySize / 2) {
+        throw out_of_range(RED "Table Full" CLEAR);
+    }
 
     index = hashFunc(value);
 
-    //add to the head of the list at that location
-    temp->next = theArray[index];
-    theArray[index] = temp;
+    while (theArray[index] != EMPTY && theArray[index] != DELETED) {
+        index++;
+
+        // wrap when you hit the top end of the array
+        if (index >= arraySize) {
+            index = 0;
+        }
+
+        cout++;
+
+        theArray[index] = value
+    }
 
 }
 

@@ -11,37 +11,21 @@
 using namespace std;
 
 class ChainHash {
-    string value;
+    int value;
     ChainHash* next;
-    ChainHash* prev;
 
 public:
 // constructor
-    explicit ChainHash(int value, ChainHash* next = nullptr, ChainHash* prev = nullptr) {
-        this->value = value;
-        this->next = next;
-        this->prev = prev;
-    }
+    explicit ChainHash(int val) : value(val), next(nullptr) {}
 
-// access methods
-    string getValue() const {
-        return this->value;
-    }
+// access methods ? might not use
 
     ChainHash* getNext() {
         return this->next;
     }
 
-    ChainHash* getPrev() {
-        return this->prev;
-    }
-
     void setNext(ChainHash* next) {
         this->next = next;
-    }
-
-    void setPrev(ChainHash* prev) {
-        this->prev = prev;
     }
 };
 

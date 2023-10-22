@@ -20,28 +20,28 @@ using namespace std;
 #define CYN "\e[0;36m"
 #define WHT "\e[0;37m"
 
-//Reset
-#define reset "\e[0m"
+//Clear
+#define CLEAR "\e[0m"
 
 class StringHash {
 private:
     int defaultSize = 11;
-    int size;
+    int arraySize;
     int temp;
 
-    string *theArray;
+    int count;
+    int index;
+
+    int *theArray;
 
     ChainHash* head;
 
-    ChainHash *tail;
-
-    ChainHash *lastFoundNode;
-
 public:
 
-    hashFunc(int key);
+    //Helper Functions
+    int hashFunc(string key);
 
-    StringHash();
+    explicit StringHash(int arraySize, int size);
 
     ~StringHash();
 
