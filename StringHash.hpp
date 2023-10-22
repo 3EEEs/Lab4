@@ -26,11 +26,13 @@ class StringHash {
 private:
     int defaultSize = 11;
 
-    int *theArray;
+    int size;
+
+    string *theArray;
 
 public:
 
-    StringHash(int size = defaultSize);
+    explicit StringHash(int size);
 
     ~StringHash();
 

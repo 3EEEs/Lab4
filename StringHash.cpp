@@ -4,8 +4,12 @@
 
 #include "StringHash.hpp"
 
-StringHash::StringHash(size = defaultSize) {
+StringHash::StringHash(int size) {
+    if (size > defaultSize) {
+        size = defaultSize;
+    }
 
+    this->size = size;
 }
 //test
 StringHash::~StringHash() {

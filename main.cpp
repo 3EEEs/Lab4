@@ -9,9 +9,9 @@
 
 #define TEST_BASE // always define this if testing any base
 #define TEST_BASE_FIND
-#define TEST_BASE_REMOVE
-#define TEST_BASE_DISPLAY
-#define TEST_BASE_GROW
+//#define TEST_BASE_REMOVE
+//#define TEST_BASE_DISPLAY
+//#define TEST_BASE_GROW
 
 //#define TEST_ADV // always define this if testing any advanced
 //#define TEST_ADV_FIND
@@ -117,7 +117,7 @@ int main()
 #ifdef TEST_ADV
     const int ADV_SIZE = 10;
     std::string advWords[ADV_SIZE] = {"dog", "cat", "ape", "cow", "frog", "fish", "goat", "bear", "deer", "elk"};
-    
+
     std::cout << "\nChainHash tests\n" << std::endl;
 #ifdef TEST_ADV_FIND
     std::cout << "Testing addItem and findItem\n" << std::endl;
@@ -130,10 +130,10 @@ int main()
     std::cout << "Should find goat and not horse" << std::endl;
     std::cout << "goat" << (advFind.findItem("goat")?" ":" not ") << "found" << std::endl;
     std::cout << "horse" << (advFind.findItem("horse")?" ":" not ") << "found" << std::endl;
-    
+
     std::cout << "\nDone testing addItem and findItem\n" << std::endl;
 #endif // TEST_ADV_FIND
-    
+
 #ifdef TEST_ADV_REMOVE
     std::cout << "Testing addItem, findItem, and removeItem\n" << std::endl;
     ChainHash advRemove;
@@ -146,10 +146,10 @@ int main()
     std::cout << "goat" << (advRemove.findItem("goat")?" ":" not ") << "found" << std::endl;
     advRemove.removeItem("goat");
     std::cout << "goat" << (advRemove.findItem("goat")?" ":" not ") << "found" << std::endl;
-    
+
     std::cout << "\nDone testing addItem, findItem, and removeItem\n" << std::endl;
 #endif // TEST_ADV_REMOVE
-    
+
 #ifdef TEST_ADV_DISPLAY
     std::cout << "Testing addItem, findItem, removeItem, and display\n" << std::endl;
     ChainHash advList;
@@ -161,7 +161,7 @@ int main()
 
     advList.removeItem("goat");
     std::cout << "Should be: \n_empty_\ndeer frog\nfish cow\n"
-                << "goat\ndog\nbear\nelk ape cat" << std::endl;
+                << "_empty_\ndog\nbear\nelk ape cat" << std::endl;
     std::cout << "The order might differ, but contents should not\n" << std::endl;
     std::cout << advList.displayTable();
     
