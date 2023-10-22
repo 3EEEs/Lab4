@@ -9,24 +9,23 @@ int StringHash::hashFunc(int key) {
         // initialize index
         int hashValue = 0;
 
-// walk through string one char at a time
-        for int i = 0; i < key.length(); i++
+    for (size_t i = 0; i < key.length(); i++) {
+        // Multiply current sum
+        hashValue *= 128;
 
-// multiply current sum
-        hashValue *= 128
+        // Add current character's ASCII value
+        hashValue += static_cast<int>(key[i]);
 
-// add current character's ascii value
-        hashValue += key[i]
-
-// shrink to fit
-        hashValue %= arraySize
-
+        // Shrink to fit within the array size
+        hashValue %= arraySize;
+    }
 
 // return the result
-        return hashValue
+        return hashValue;
 }
 
-StringHash::StringHash(int size) {
+//Constructor
+StringHash::StringHash(): head(nullptr), tail(nullptr), lastFoundNode(nullptr) {
     if (size > defaultSize) {
         size = defaultSize;
     }

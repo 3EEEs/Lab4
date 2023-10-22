@@ -6,6 +6,7 @@
 #define LAB4_STRINGHASH_HPP
 
 #include <iostream>
+#include "ChainHash.hpp"
 
 using namespace std;
 
@@ -25,18 +26,22 @@ using namespace std;
 class StringHash {
 private:
     int defaultSize = 11;
-
     int size;
-
     int temp;
 
     string *theArray;
+
+    ChainHash* head;
+
+    ChainHash *tail;
+
+    ChainHash *lastFoundNode;
 
 public:
 
     hashFunc(int key);
 
-    explicit StringHash(int size);
+    StringHash();
 
     ~StringHash();
 

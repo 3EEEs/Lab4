@@ -5,8 +5,13 @@
 #ifndef LAB4_CHAINHASH_HPP
 #define LAB4_CHAINHASH_HPP
 
+#include <iostream>
+#include <sstream>
+
+using namespace std;
+
 class ChainHash {
-    char value;
+    string value;
     ChainHash* next;
     ChainHash* prev;
 
@@ -19,7 +24,7 @@ public:
     }
 
 // access methods
-    int getValue() const {
+    string getValue() const {
         return this->value;
     }
 
