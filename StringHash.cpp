@@ -14,7 +14,7 @@ int StringHash::hashFunc(string key) {
         hashValue *= 128;
 
         // Add current character's ASCII value
-        hashValue += static_cast<int>(key[i]);
+        hashValue += key[i];
 
         // Shrink to fit within the array size
         hashValue %= arraySize;
@@ -25,11 +25,11 @@ int StringHash::hashFunc(string key) {
 }
 
 //Constructor
-StringHash::StringHash(int arraySize, int size): arraySize(arraySize) {
-    if(size > defaultSize) {
-            theArray = new int[arraySize];
+StringHash::StringHash(): arraySize(arraySize), temp(0), head(nullptr) {
+    if(arraySize > defaultSize) {
+            theArray = new string[arraySize];
     } else {
-        theArray = new int[defaultSize];
+        theArray = new string[defaultSize];
     }
 
     count = 0;
@@ -37,17 +37,16 @@ StringHash::StringHash(int arraySize, int size): arraySize(arraySize) {
 
     //Init all to empty (-1)
     for (int i = 0; i < arraySize; i++) {
-        theArray[i] = -1;
+        theArray[i] = EMPTY;
     }
-
 }
 
-//Destructor /Must update
+//Destructor /Must update /Go through and delete all nodes
 StringHash::~StringHash() {
     delete theArray;
 }
 
-void StringHash::addItem(int value) {
+void StringHash::addItem(string value) {
     if (count >= arraySize / 2) {
         throw out_of_range(RED "Table Full" CLEAR);
     }
@@ -62,18 +61,33 @@ void StringHash::addItem(int value) {
             index = 0;
         }
 
-        cout++;
+        count++;
 
-        theArray[index] = value
+        theArray[index] = value;
     }
 
 }
 
-bool StringHash::findItem(int value) {
+bool StringHash::findItem(string value) {
+    index = hashFunc(value);
 
+    bool done = false;
+
+    while (theArray[index] != EMPTY && !done) {
+        if (theArray[index] == value) {
+            done = true;
+        } else {
+            index++;
+            if(index >= arraySize) {
+                index = 0;
+            }
+        }
+    }
+
+    return done;
 }
 
-void StringHash::removeItem(int value) {
+void StringHash::removeItem(string value) {
 
 }
 

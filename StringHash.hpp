@@ -32,7 +32,10 @@ private:
     int count;
     int index;
 
-    int *theArray;
+    const string EMPTY = "_empty_";
+    const string DELETED = "_deleted_";
+
+    string *theArray;
 
     ChainHash* head;
 
@@ -41,15 +44,15 @@ public:
     //Helper Functions
     int hashFunc(string key);
 
-    explicit StringHash(int arraySize, int size);
+    explicit StringHash();
 
     ~StringHash();
 
-    void addItem(int value);
+    void addItem(string value);
 
-    bool findItem(int value);
+    bool findItem(string value);
 
-    void removeItem(int value);
+    void removeItem(string value);
 
     string displayTable();
 };
