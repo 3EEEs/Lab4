@@ -25,7 +25,7 @@ int StringHash::hashFunc(string key) {
 }
 
 //Constructor
-StringHash::StringHash(): temp(0), head(nullptr) {
+StringHash::StringHash(): temp(0){
     if (arraySize < defaultSize) {
         arraySize = defaultSize;
     } else {
@@ -105,5 +105,12 @@ index = hashFunc(value);
 }
 
 string StringHash::displayTable() {
-    return "string";
+    string result;
+
+    for (int i = 0; i < arraySize; i++) {
+        result += theArray[i];
+        result += " ";
+    }
+
+    return result;
 }

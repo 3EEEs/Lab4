@@ -6,7 +6,6 @@
 #define LAB4_STRINGHASH_HPP
 
 #include <iostream>
-#include "ChainHash.hpp"
 
 using namespace std;
 
@@ -36,8 +35,6 @@ private:
     const string DELETED = "_deleted_";
 
     string *theArray;
-
-    ChainHash* head;
 
 public:
 
