@@ -28,9 +28,13 @@ private:
 
     int size;
 
+    int temp;
+
     string *theArray;
 
 public:
+
+    hashFunc(int key);
 
     explicit StringHash(int size);
 
