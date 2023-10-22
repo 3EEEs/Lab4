@@ -12,12 +12,18 @@ using namespace std;
 
 class ChainHash {
 private:
+    int defaultSize = 7;
+    int arraySize;
 
+    ChainLink* head;
 
 public:
-    // constructor
 
-    //Destructor
+    int hash(int value);
+
+    ChainHash();
+
+    ~ChainHash();
 
     //Additem
 
@@ -27,16 +33,6 @@ public:
 
     //DisplayTable
 
-
-// access methods ? might not use
-
-    ChainLink* getNext() {
-        return this->next;
-    }
-
-    void setNext(ChainLink* next) {
-        this->next = next;
-    }
 };
 
 #endif //LAB4_CHAINHASH_HPP

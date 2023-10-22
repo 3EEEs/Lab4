@@ -9,15 +9,15 @@ class ChainLink {
 private:
     int value;
     ChainLink* next;
+
 public:
 
-
-    // access methods ? might not use
-
+    //Getters
     ChainLink* getNext() {
         return this->next;
     }
 
+    //Setters
     void setNext(ChainLink* next) {
         this->next = next;
     }
