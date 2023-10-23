@@ -7,14 +7,14 @@
 
 #include <iostream>
 
-#define TEST_BASE // always define this if testing any base
-#define TEST_BASE_FIND
-#define TEST_BASE_REMOVE
-#define TEST_BASE_DISPLAY
-#define TEST_BASE_GROW
+//#define TEST_BASE // always define this if testing any base
+//#define TEST_BASE_FIND
+//#define TEST_BASE_REMOVE
+//#define TEST_BASE_DISPLAY
+//#define TEST_BASE_GROW
 
-//#define TEST_ADV // always define this if testing any advanced
-//#define TEST_ADV_FIND
+#define TEST_ADV // always define this if testing any advanced
+#define TEST_ADV_FIND
 //#define TEST_ADV_REMOVE
 //#define TEST_ADV_DISPLAY
 //#define TEST_THINK // test adv grow

@@ -39,7 +39,7 @@ private:
 public:
 
     //Helper Functions
-    int hashFunc(string key);
+    int hashFunc(string key) const;
 
     void resizeArray();
 

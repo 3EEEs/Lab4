@@ -15,17 +15,23 @@ private:
     int defaultSize = 7;
     int arraySize;
 
+    int temp;
+    int count;
+
+    string* theTable;
+
     ChainLink* head;
 
 public:
-
-    int hash(int value);
 
     ChainHash();
 
     ~ChainHash();
 
-    int Additem(int value);
+    int Additem(string value);
+
+    //Helper functions
+    int hashFunc(string key) const;
 
     //FindItem
 

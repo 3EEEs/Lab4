@@ -11,7 +11,7 @@ ChainHash::ChainHash() {
         this->arraySize = arraySize;
     }
 
-    this->head = new ChainLink(); // maybe
+    theTable = new string[arraySize];
 
 }
 
@@ -20,10 +20,31 @@ ChainHash::~ChainHash() {
     delete this->head;
 }
 
-int ChainHash::hash(int value) {
-    return value % arraySize;
+//Helper functions
+int ChainHash::hashFunc(string key) const {
+    // initialize index
+    int hashValue = 0;
+
+    for (size_t i = 0; i < key.length(); i++) {
+        // Multiply current sum
+        hashValue *= 128;
+
+        // Add current character's ASCII value
+        hashValue += key[i];
+
+        // Shrink to fit within the array size
+        hashValue %= arraySize;
+    }
+
+// return the result
+    return hashValue;
 }
 
-int Additem(int value) {
-    return 0; //not working
+int ChainHash::Additem(string value) {
+    int index = hashFunc(value);
+
+
+    theTable[index] = temp;
+
+    return index;
 }
