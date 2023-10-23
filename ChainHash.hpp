@@ -28,12 +28,13 @@ public:
 
     ~ChainHash();
 
-    int Additem(string value);
-
     //Helper functions
     int hashFunc(string key) const;
 
-    //FindItem
+    //Core Methods
+    int addItem(string value);
+
+    bool findItem(string value);
 
     //RemoveItem
 

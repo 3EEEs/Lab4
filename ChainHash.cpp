@@ -40,11 +40,20 @@ int ChainHash::hashFunc(string key) const {
     return hashValue;
 }
 
-int ChainHash::Additem(string value) {
+int ChainHash::addItem(string value) {
     int index = hashFunc(value);
-
 
     theTable[index] = temp;
 
     return index;
+}
+
+bool ChainHash::findItem(string value) {
+    int index = hashFunc(value);
+
+    if (theTable[index] == value) {
+        return true;
+    } else {
+        return false;
+    }
 }
