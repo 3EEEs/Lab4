@@ -28,13 +28,13 @@ void StringHash::resizeArray() {
     int newSize = findNextPrime(arraySize * 2); // Double the size
     std::string* newTable = new std::string[newSize];
     for (int i = 0; i < newSize; i++) {
-        newTable[i] = "_empty_";
+        newTable[i] = EMPTY;
     }
 
     for (int i = 0; i < arraySize; i++) {
-        if (theArray[i] != "_empty_" && theArray[i] != "_deleted_") {
+        if (theArray[i] != "_empty_" && theArray[i] != DELETED) {
             int index = hashFunc(theArray[i]);
-            while (newTable[index] != "_empty_") {
+            while (newTable[index] != EMPTY) {
                 index = (index + 1) % newSize; // Linear probing
             }
             newTable[index] = theArray[i];
@@ -108,37 +108,25 @@ void StringHash::addItem(string value) {
 bool StringHash::findItem(string value) {
     index = hashFunc(value);
 
-    bool done = false;
-
-    while (theArray[index] != EMPTY && !done) {
+    for (int i = 0; i < arraySize; i++) {
         if (theArray[index] == value) {
-            done = true;
-        } else {
-            index++;
-            if(index >= arraySize) {
-                index = 0;
-            }
+            return true;
         }
+        index = (index + 1) % arraySize; // Linear probing
     }
-
-    return done;
+    return false;
 }
 
 void StringHash::removeItem(string value) {
 index = hashFunc(value);
 
-    bool done = false;
-
-    while (theArray[index] != EMPTY && !done) {
+    for (int i = 0; i < arraySize; i++) {
         if (theArray[index] == value) {
-            done = true;
-            theArray[index] = DELETED;
-        } else {
-            index++;
-            if(index >= arraySize) {
-                index = 0;
-            }
+            theArray[index] = "_deleted_";
+            count--;
+            return;
         }
+        index = (index + 1) % arraySize; // Linear probing
     }
 }
 
@@ -146,8 +134,21 @@ string StringHash::displayTable() {
     string result;
 
     for (int i = 0; i < arraySize; i++) {
-        result += theArray[i];
-        result += " ";
+        if(theArray[i] != EMPTY && theArray[i] != DELETED) {
+            result += GRN;
+            result += theArray[i];
+            result += CLEAR;
+            result += " ";
+        } else if (theArray[i] == DELETED) {
+            result += RED;
+            result += theArray[i];
+            result += CLEAR;
+            result += " ";
+        } else {
+            result += theArray[i];
+            result += " ";
+        }
+
     }
 
     return result;
