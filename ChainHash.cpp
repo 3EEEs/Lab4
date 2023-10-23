@@ -95,3 +95,17 @@ void ChainHash::removeItem(string value) {
         }
     }
 }
+
+string ChainHash::displayTable() {
+    string result;
+    for (int i = 0; i < tableSize; i++) {
+        result += std::to_string(i) + ": ";
+        ChainLink* temp = theTable[i];
+        while (temp != nullptr) {
+            result += temp->getValue() + " ";
+            temp = temp->getNext();
+        }
+        result += "\n";
+    }
+    return result;
+}

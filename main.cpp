@@ -16,7 +16,7 @@
 #define TEST_ADV // always define this if testing any advanced
 #define TEST_ADV_FIND
 #define TEST_ADV_REMOVE
-//#define TEST_ADV_DISPLAY
+#define TEST_ADV_DISPLAY
 //#define TEST_THINK // test adv grow
 
 #ifdef TEST_BASE

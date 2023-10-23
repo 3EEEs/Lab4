@@ -38,7 +38,7 @@ public:
 
     void removeItem(string value);
 
-    //DisplayTable
+    string displayTable();
 
 };
 
