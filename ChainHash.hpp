@@ -13,12 +13,12 @@ using namespace std;
 class ChainHash {
 private:
     int defaultSize = 7;
-    int arraySize;
+    int tableSize;
 
     int data;
     int key;
 
-    ChainLink* theTable[11];
+    ChainLink* theTable;
 
     ChainLink* head;
 

@@ -5,13 +5,13 @@
 #include "ChainHash.hpp"
 
 ChainHash::ChainHash() {
-    if (arraySize > defaultSize) {
-        this->arraySize = defaultSize;
+    if (tableSize > defaultSize) {
+        this->tableSize = defaultSize;
     } else {
-        this->arraySize = arraySize;
+        this->tableSize = tableSize;
     }
 
-    theTable = new string[arraySize];
+    ChainLink* theTable[tableSize];
 }
 
 //Add more
@@ -32,7 +32,7 @@ int ChainHash::hashFunc(string key) {
         hashValue += key[i];
 
         // Shrink to fit within the array size
-        hashValue %= arraySize;
+        hashValue %= tableSize;
     }
 
 // return the result
