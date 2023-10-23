@@ -11,7 +11,11 @@ ChainHash::ChainHash() {
         this->tableSize = tableSize;
     }
 
-    ChainLink* theTable[tableSize];
+    theTable = *new ChainLink*[tableSize];
+    //initialize the table
+    for (int i = 0; i < tableSize; i++) {
+        theTable[i] = nullptr;
+    }
 }
 
 //Add more
@@ -40,31 +44,24 @@ int ChainHash::hashFunc(string key) {
 }
 
 int ChainHash::addItem(string value) {
+    // create a new item to add to the hash table
+    ChainLink* temp = new ChainLink(value);
+
+    // get the index into the hash array
     int index = hashFunc(value);
 
-    ChainLink* newLink = new ChainLink(index, value);
-
-    if (theTable[index] == nullptr) {
-        theTable[index] = newLink;
-    } else {
-        ChainLink* temp = theTable[index];
-        while (temp->getNext() != nullptr) {
-            temp = temp->getNext();
-        }
-        temp->setNext(newLink);
-    }
-
-    return index;
+    // add to head of list at that location
+    temp->setNext(theTable[index)]);
+    theTable[index] = temp
 }
 
 bool ChainHash::findItem(string value) {
     int index = hashFunc(value);
-    return false;
-/*
+
     if (theTable[index] == value) {
         return true;
     } else {
         return false;
     }
-    */
+
 }

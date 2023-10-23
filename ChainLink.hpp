@@ -7,26 +7,20 @@
 
 class ChainLink : public __thread_id {
 public:
-    int key;        // Key associated with the item
-    std::string data; // Data stored in the item
+    std::string value; // Data stored in the item
     ChainLink* next; // Pointer to the next item in the chain (for chaining)
 
     // Constructor to initialize the ChainItem
-    ChainLink(int k, const std::string& d) : key(k), data(d), next(nullptr) {}
-
-    // Getter method for retrieving the key
-    int getKey() {
-        return key;
-    }
+    ChainLink(string value) : value(value), next(nullptr) {}
 
     // Getter method for retrieving the data
-    std::string getData() {
-        return data;
+    std::string getValue() {
+        return value;
     }
 
     // Setter method for updating the data
-    void setData(const std::string& newData) {
-        data = newData;
+    void setData(const std::string& newValue) {
+        value = newValue;
     }
 
     // Getter method for retrieving the next item in the chain
