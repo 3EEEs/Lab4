@@ -15,10 +15,10 @@ private:
     int defaultSize = 7;
     int arraySize;
 
-    int temp;
-    int count;
+    int data;
+    int key;
 
-    string* theTable;
+    ChainLink* theTable[11];
 
     ChainLink* head;
 
@@ -29,7 +29,7 @@ public:
     ~ChainHash();
 
     //Helper functions
-    int hashFunc(string key) const;
+    int hashFunc(string key);
 
     //Core Methods
     int addItem(string value);

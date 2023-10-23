@@ -5,7 +5,7 @@
 #include "StringHash.hpp"
 
 //Helper Functions
-int StringHash::hashFunc(string key) {
+int StringHash::hashFunc(string key) const {
         // initialize index
         int hashValue = 0;
 
