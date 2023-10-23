@@ -40,14 +40,18 @@ public:
 
     //Helper Functions
     int hashFunc(string key);
+
     void resizeArray();
+
     int findNextPrime(int n);
 
 
+    //Constructor / Destructor
     explicit StringHash();
 
     ~StringHash();
 
+    //Core Methods
     void addItem(string value);
 
     bool findItem(string value);

@@ -31,19 +31,19 @@ void StringHash::resizeArray() {
         newTable[i] = "_empty_";
     }
 
-    for (int i = 0; i < size; i++) {
-        if (table[i] != "_empty_" && table[i] != "_deleted_") {
-            int index = hash(table[i]);
+    for (int i = 0; i < arraySize; i++) {
+        if (theArray[i] != "_empty_" && theArray[i] != "_deleted_") {
+            int index = hashFunc(theArray[i]);
             while (newTable[index] != "_empty_") {
                 index = (index + 1) % newSize; // Linear probing
             }
-            newTable[index] = table[i];
+            newTable[index] = theArray[i];
         }
     }
 
-    delete[] table;
-    table = newTable;
-    size = newSize;
+    delete[] theArray;
+    theArray = newTable;
+    arraySize = newSize;
 }
 
 int StringHash::findNextPrime(int n) {
@@ -62,7 +62,6 @@ int StringHash::findNextPrime(int n) {
     }
     return n;
 }
-};
 
 //Constructor
 StringHash::StringHash(): temp(0){
