@@ -23,3 +23,7 @@ ChainHash::~ChainHash() {
 int ChainHash::hash(int value) {
     return value % arraySize;
 }
+
+int Additem(int value) {
+    return 0; //not working
+}

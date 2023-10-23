@@ -24,6 +24,46 @@ int StringHash::hashFunc(string key) {
         return hashValue;
 }
 
+void StringHash::resizeArray() {
+    int newSize = findNextPrime(arraySize * 2); // Double the size
+    std::string* newTable = new std::string[newSize];
+    for (int i = 0; i < newSize; i++) {
+        newTable[i] = "_empty_";
+    }
+
+    for (int i = 0; i < size; i++) {
+        if (table[i] != "_empty_" && table[i] != "_deleted_") {
+            int index = hash(table[i]);
+            while (newTable[index] != "_empty_") {
+                index = (index + 1) % newSize; // Linear probing
+            }
+            newTable[index] = table[i];
+        }
+    }
+
+    delete[] table;
+    table = newTable;
+    size = newSize;
+}
+
+int StringHash::findNextPrime(int n) {
+    bool isPrime = false;
+    while (!isPrime) {
+        isPrime = true;
+        for (int i = 2; i * i <= n; i++) {
+            if (n % i == 0) {
+                isPrime = false;
+                break;
+            }
+        }
+        if (!isPrime) {
+            n++;
+        }
+    }
+    return n;
+}
+};
+
 //Constructor
 StringHash::StringHash(): temp(0){
     if (arraySize < defaultSize) {
@@ -39,14 +79,13 @@ StringHash::StringHash(): temp(0){
     }
 }
 
-//Destructor /Must update /Go through and delete all nodes
 StringHash::~StringHash() {
     delete theArray;
 }
 
 void StringHash::addItem(string value) {
     if (count >= arraySize / 2) {
-        throw out_of_range(RED "Table Full" CLEAR);
+        resizeArray();
     }
 
     index = hashFunc(value);

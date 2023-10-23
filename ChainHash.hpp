@@ -25,7 +25,7 @@ public:
 
     ~ChainHash();
 
-    //Additem
+    int Additem(int value);
 
     //FindItem
 

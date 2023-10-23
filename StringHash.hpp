@@ -40,6 +40,9 @@ public:
 
     //Helper Functions
     int hashFunc(string key);
+    void resizeArray();
+    int findNextPrime(int n);
+
 
     explicit StringHash();
 
