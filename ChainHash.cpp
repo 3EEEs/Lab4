@@ -6,12 +6,12 @@
 
 ChainHash::ChainHash() {
     if (tableSize > defaultSize) {
-        this->tableSize = defaultSize;
-    } else {
         this->tableSize = tableSize;
+    } else {
+        this->tableSize = defaultSize;
     }
 
-    theTable = *new ChainLink*[tableSize];
+    theTable = new ChainLink *[tableSize](); // Initialize to nullptr
     //initialize the table
     for (int i = 0; i < tableSize; i++) {
         theTable[i] = nullptr;
@@ -51,17 +51,23 @@ int ChainHash::addItem(string value) {
     int index = hashFunc(value);
 
     // add to head of list at that location
-    temp->setNext(theTable[index)]);
-    theTable[index] = temp
+    temp->setNext(theTable[index]);
+    theTable[index] = temp;
 }
 
 bool ChainHash::findItem(string value) {
+    // get the index into the hash array
     int index = hashFunc(value);
 
-    if (theTable[index] == value) {
-        return true;
-    } else {
-        return false;
+    // search the list at that location
+    ChainLink* temp = theTable[index];
+    while (temp != nullptr) {
+        if (temp->getValue() == value) {
+            return true;
+        }
+        temp = temp->getNext();
     }
 
+    // not found
+    return false;
 }

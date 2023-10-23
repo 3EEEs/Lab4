@@ -18,7 +18,7 @@ private:
     int data;
     int key;
 
-    ChainLink *theTable;
+    ChainLink** theTable;
 
     ChainLink* head;
 

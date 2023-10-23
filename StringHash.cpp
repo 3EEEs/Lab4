@@ -64,7 +64,7 @@ int StringHash::findNextPrime(int n) {
 }
 
 //Constructor
-StringHash::StringHash(): temp(0){
+StringHash::StringHash(){
     if (arraySize < defaultSize) {
         arraySize = defaultSize;
     } else {
