@@ -36,7 +36,7 @@ public:
 
     bool findItem(string value);
 
-    //RemoveItem
+    void removeItem(string value);
 
     //DisplayTable
 

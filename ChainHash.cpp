@@ -71,3 +71,27 @@ bool ChainHash::findItem(string value) {
     // not found
     return false;
 }
+
+void ChainHash::removeItem(string value) {
+    //get the index into the hash array
+    int index = hashFunc(value);
+
+    if (theTable[index] != nullptr) {
+        //search the list at that location
+        ChainLink* temp = theTable[index];
+        ChainLink* prev = nullptr;
+        while (temp != nullptr) {
+            if (temp->getValue() == value) {
+                if (prev == nullptr) {
+                    theTable[index] = temp->getNext();
+                } else {
+                    prev->setNext(temp->getNext());
+                }
+                delete temp;
+                return;
+            }
+            prev = temp;
+            temp = temp->getNext();
+        }
+    }
+}
