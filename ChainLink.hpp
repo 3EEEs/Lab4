@@ -5,7 +5,7 @@
 #ifndef LAB4_CHAINLINK_HPP
 #define LAB4_CHAINLINK_HPP
 
-class ChainLink {
+class ChainLink : public __thread_id {
 public:
     int key;        // Key associated with the item
     std::string data; // Data stored in the item

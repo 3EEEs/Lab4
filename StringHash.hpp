@@ -26,7 +26,6 @@ class StringHash {
 private:
     int defaultSize = 11;
     int arraySize;
-    int temp;
 
     int count;
     int index;

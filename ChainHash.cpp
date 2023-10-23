@@ -42,36 +42,29 @@ int ChainHash::hashFunc(string key) {
 int ChainHash::addItem(string value) {
     int index = hashFunc(value);
 
-    ChainHash* newItem = new ChainHash(key, value);
+    ChainLink* newLink = new ChainLink(index, value);
 
-    newItem->getNext() = theTable[index];
-
-    // Update the head of the chain to the new item
-    theTable[index] = newItem;
+    if (theTable[index] == nullptr) {
+        theTable[index] = newLink;
+    } else {
+        ChainLink* temp = theTable[index];
+        while (temp->getNext() != nullptr) {
+            temp = temp->getNext();
+        }
+        temp->setNext(newLink);
+    }
 
     return index;
 }
-/*
-// add a new item in the list with key as value
-addValue(value)
-// create a new item with that value
-temp = new ChainItem(value)
 
-// get the index into the hash array
-index = hash(value)
-
-// add to head of list at that location
-temp.setNext(theTable[index])
-theTable[index] = temp
-// look for an item containing key
-findValue(value)
-*/
 bool ChainHash::findItem(string value) {
     int index = hashFunc(value);
-
+    return false;
+/*
     if (theTable[index] == value) {
         return true;
     } else {
         return false;
     }
+    */
 }
