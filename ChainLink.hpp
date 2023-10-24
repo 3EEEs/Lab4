@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class ChainLink : public __thread_id {
+class ChainLink {
 public:
     std::string value; // Data stored in the item
     ChainLink* next; // Pointer to the next item in the chain (for chaining)

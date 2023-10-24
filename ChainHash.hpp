@@ -18,12 +18,12 @@ private:
     int defaultSize = 7;
     int tableSize;
 
-    int data;
-    int count;
+    int data{};
+    int count{};
 
     ChainLink** theTable;
 
-    ChainLink* head;
+    ChainLink* head{};
 
 public:
 

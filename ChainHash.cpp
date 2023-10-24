@@ -49,14 +49,14 @@ void ChainHash::resizeTable() {
     //create a new table
     ChainLink **newTable = new ChainLink *[newSize]();
 
+    count = 0;
+
     for (int i = 0; i < tableSize; i++) {
         ChainLink *currentLink = theTable[i];
 
         addItem(currentLink->getValue());
-        while (currentLink->getNext() != nullptr) {
-            currentLink = currentLink->getNext();
-            addItem(currentLink->getValue());
-        }
+
+        count++;
     }
 
     //delete the old table
