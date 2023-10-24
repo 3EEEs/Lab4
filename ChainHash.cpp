@@ -44,8 +44,6 @@ int ChainHash::hashFunc(string key) {
 }
 
 void ChainHash::resizeTable() {
-    cout << YEL << "Resizing table" << CLEAR << endl;
-
     int newSize = nextPrime(tableSize); //Increase the size by the next prime number
 
     //create a new table
@@ -64,16 +62,9 @@ void ChainHash::resizeTable() {
 
     //set the new table size
     tableSize = newSize;
-
-    cout << BLU << tableSize << CLEAR << endl;
 }
 
-int ChainHash::nextPrime(int N)
-{
-    // Base case
-    if (N <= 1)
-        return 2;
-
+int ChainHash::nextPrime(int N) {
     int prime = N;
     bool found = false;
 
@@ -89,13 +80,11 @@ int ChainHash::nextPrime(int N)
         }
     }
 
-    cout << GRN << prime << CLEAR << endl;
     return prime;
 }
 
 int ChainHash::addItem(string value) {
     //Check if the table is too full
-    cout << RED << data << CLEAR << endl;
     if (data >= tableSize * 2) {
         // If the number of items is more than twice the table size, resize the table.
         resizeTable();
