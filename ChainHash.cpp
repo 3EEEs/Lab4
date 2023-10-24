@@ -44,19 +44,32 @@ int ChainHash::hashFunc(string key) {
 }
 
 void ChainHash::resizeTable() {
-    int newSize = nextPrime(tableSize); //Increase the size by the next prime number
+    cout << "here" << endl;
+
+    int oldTableSize = tableSize; //Increase the size by the next prime number
+    tableSize = nextPrime(tableSize); //Set current
 
     //create a new table
-    ChainLink **newTable = new ChainLink *[newSize]();
+    ChainLink **newTable = new ChainLink *[tableSize]();
 
-    count = 0;
-
-    for (int i = 0; i < tableSize; i++) {
+    for (int i = 0; i < tableSize * 2; i++) {
         ChainLink *currentLink = theTable[i];
 
-        addItem(currentLink->getValue());
+        while (currentLink->getNext() != nullptr) {
+            cout << "Adding item" << endl;
 
-        count++;
+            // create a new item to add to the hash table
+            ChainLink* temp = new ChainLink(currentLink->getValue());
+
+            // get the index into the hash array
+            int index = hashFunc(currentLink->getValue());
+
+            // add to head of list at that location
+            temp->setNext(theTable[index]);
+            theTable[index] = temp;
+
+            count++;
+        }
     }
 
     //delete the old table
@@ -65,9 +78,9 @@ void ChainHash::resizeTable() {
     //set the new table to the old table
     theTable = newTable;
 
-    cout << YEL << newSize << CLEAR << endl;
+    cout << YEL << tableSize << CLEAR << endl;
     //set the new table size
-    tableSize = newSize;
+    tableSize = tableSize;
 }
 
 int ChainHash::nextPrime(int N) {
@@ -93,8 +106,9 @@ int ChainHash::nextPrime(int N) {
 
 int ChainHash::addItem(string value) {
     //Check if the table is too full
-    if (count >= tableSize * 2) {
+     if (count >= tableSize * 2) {
         // If the number of items is more than twice the table size, resize the table.
+        cout << "Here/1" << endl;
         resizeTable();
     }
 

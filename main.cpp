@@ -179,6 +179,9 @@ int main()
     {
         advGrow.addItem(advWords[i]);
     }
+
+    std::cout << advGrow.displayTable();//Temp
+
     for (int i = 0; i < ADV_EXTRA; i++)
     {
         advGrow.addItem(advExtraWords[i]);
