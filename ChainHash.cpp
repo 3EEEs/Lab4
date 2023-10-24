@@ -44,7 +44,9 @@ int ChainHash::hashFunc(string key) {
 }
 
 void ChainHash::resizeTable() {
-    int newSize = findNextPrime(tableSize * 2); // Double the size
+    cout << YEL << "Resizing table" << CLEAR << endl;
+
+    int newSize = nextPrime(tableSize); //Increase the size by the next prime number
 
     //create a new table
     ChainLink **newTable = new ChainLink *[newSize]();
@@ -61,27 +63,44 @@ void ChainHash::resizeTable() {
     theTable = newTable;
 
     //set the new table size
-    tableSize *= 2;
+    tableSize = newSize;
+
+    cout << BLU << tableSize << CLEAR << endl;
 }
 
-int ChainHash::findNextPrime(int n) {
-    bool isPrime = false;
-    while (!isPrime) {
-        isPrime = true;
-        for (int i = 2; i * i <= n; i++) {
-            if (n % i == 0) {
-                isPrime = false;
+int ChainHash::nextPrime(int N)
+{
+    // Base case
+    if (N <= 1)
+        return 2;
+
+    int prime = N;
+    bool found = false;
+
+    // Loop continuously until a prime number is found
+    while (!found) {
+        prime++;
+        found = true; // Assume prime until proven otherwise
+        for (int i = 2; i * i <= prime; i++) {
+            if (prime % i == 0) {
+                found = false; // It's not prime
                 break;
             }
         }
-        if (!isPrime) {
-            n++;
-        }
     }
-    return n;
+
+    cout << GRN << prime << CLEAR << endl;
+    return prime;
 }
 
 int ChainHash::addItem(string value) {
+    //Check if the table is too full
+    cout << RED << data << CLEAR << endl;
+    if (data >= tableSize * 2) {
+        // If the number of items is more than twice the table size, resize the table.
+        resizeTable();
+    }
+
     // create a new item to add to the hash table
     ChainLink* temp = new ChainLink(value);
 
@@ -91,6 +110,8 @@ int ChainHash::addItem(string value) {
     // add to head of list at that location
     temp->setNext(theTable[index]);
     theTable[index] = temp;
+
+    data++;
 }
 
 bool ChainHash::findItem(string value) {
@@ -126,6 +147,7 @@ void ChainHash::removeItem(string value) {
                     prev->setNext(temp->getNext());
                 }
                 delete temp;
+                data--;
                 return;
             }
             prev = temp;

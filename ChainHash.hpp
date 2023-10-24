@@ -33,7 +33,7 @@ public:
 
     void resizeTable();
 
-    int findNextPrime(int n);
+    int nextPrime(int n);
 
     //Core Methods
     int addItem(string value);
