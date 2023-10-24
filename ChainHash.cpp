@@ -52,15 +52,12 @@ void ChainHash::resizeTable() {
     for (int i = 0; i < tableSize; i++) {
         ChainLink *currentLink = theTable[i];
 
-        while (currentLink != nullptr) {
-            ChainLink *nextLink = currentLink->getNext();
-            int newIndex = hashFunc(currentLink->getValue());
-            currentLink->setNext(newTable[newIndex]);
-            newTable[newIndex] = currentLink;
-            currentLink = nextLink;
+        addItem(currentLink->getValue());
+        while (currentLink->getNext() != nullptr) {
+            currentLink = currentLink->getNext();
+            addItem(currentLink->getValue());
         }
     }
-
 
     //delete the old table
     delete[] theTable;
@@ -74,7 +71,9 @@ void ChainHash::resizeTable() {
 }
 
 int ChainHash::nextPrime(int N) {
-    int prime = N;
+    return 13;
+
+    /*int prime = N;
     bool found = false;
 
     // Loop continuously until a prime number is found
@@ -89,7 +88,7 @@ int ChainHash::nextPrime(int N) {
         }
     }
 
-    return prime;
+    return prime;*/
 }
 
 int ChainHash::addItem(string value) {
