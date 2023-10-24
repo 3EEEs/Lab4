@@ -25,7 +25,7 @@ int StringHash::hashFunc(string key) const {
 }
 
 void StringHash::resizeArray() {
-    int newSize = findNextPrime(arraySize * 2); // Double the size
+    int newSize = findNextPrime(arraySize); // Double the size
     std::string* newTable = new std::string[newSize];
     for (int i = 0; i < newSize; i++) {
         newTable[i] = EMPTY;

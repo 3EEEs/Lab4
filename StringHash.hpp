@@ -38,7 +38,7 @@ private:
 public:
 
     //Helper Functions
-    int hashFunc(string key) const;
+    [[nodiscard]] int hashFunc(string key) const;
 
     void resizeArray();
 

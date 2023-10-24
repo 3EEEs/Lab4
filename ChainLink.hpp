@@ -5,6 +5,10 @@
 #ifndef LAB4_CHAINLINK_HPP
 #define LAB4_CHAINLINK_HPP
 
+#include <iostream>
+
+using namespace std;
+
 class ChainLink : public __thread_id {
 public:
     std::string value; // Data stored in the item

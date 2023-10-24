@@ -5,10 +5,7 @@
 #ifndef LAB4_CHAINHASH_HPP
 #define LAB4_CHAINHASH_HPP
 
-#include "StringHash.hpp"
 #include "ChainLink.hpp"
-
-using namespace std;
 
 class ChainHash {
 private:
@@ -16,7 +13,6 @@ private:
     int tableSize;
 
     int data;
-    int key;
 
     ChainLink** theTable;
 
