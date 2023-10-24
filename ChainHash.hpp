@@ -31,6 +31,10 @@ public:
     //Helper functions
     int hashFunc(string key);
 
+    void resizeTable();
+
+    int findNextPrime(int n);
+
     //Core Methods
     int addItem(string value);
 

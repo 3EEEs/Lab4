@@ -43,6 +43,44 @@ int ChainHash::hashFunc(string key) {
     return hashValue;
 }
 
+void ChainHash::resizeTable() {
+    int newSize = findNextPrime(tableSize * 2); // Double the size
+
+    //create a new table
+    ChainLink **newTable = new ChainLink *[newSize]();
+
+    //copy the old table into the new table
+    for (int i = 0; i < tableSize; i++) {
+        newTable[i] = theTable[i];
+    }
+
+    //delete the old table
+    delete[] theTable;
+
+    //set the new table to the old table
+    theTable = newTable;
+
+    //set the new table size
+    tableSize *= 2;
+}
+
+int ChainHash::findNextPrime(int n) {
+    bool isPrime = false;
+    while (!isPrime) {
+        isPrime = true;
+        for (int i = 2; i * i <= n; i++) {
+            if (n % i == 0) {
+                isPrime = false;
+                break;
+            }
+        }
+        if (!isPrime) {
+            n++;
+        }
+    }
+    return n;
+}
+
 int ChainHash::addItem(string value) {
     // create a new item to add to the hash table
     ChainLink* temp = new ChainLink(value);

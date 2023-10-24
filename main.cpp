@@ -17,7 +17,7 @@
 #define TEST_ADV_FIND
 #define TEST_ADV_REMOVE
 #define TEST_ADV_DISPLAY
-//#define TEST_THINK // test adv grow
+#define TEST_THINK // test adv grow
 
 #ifdef TEST_BASE
 #include "StringHash.hpp"
