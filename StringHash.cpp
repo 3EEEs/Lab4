@@ -25,7 +25,7 @@ int StringHash::hashFunc(string key) const {
 }
 
 void StringHash::resizeArray() {
-    int newSize = findNextPrime(arraySize); // Double the size
+    int newSize = findNextPrime(arraySize*2); // Double the size
     std::string* newTable = new std::string[newSize];
     for (int i = 0; i < newSize; i++) {
         newTable[i] = EMPTY;
@@ -64,7 +64,7 @@ int StringHash::findNextPrime(int n) {
 }
 
 //Constructor
-StringHash::StringHash(){
+StringHash::StringHash() : count (0){
     if (arraySize < defaultSize) {
         arraySize = defaultSize;
     } else {
@@ -85,6 +85,7 @@ StringHash::~StringHash() {
 void StringHash::addItem(string value) {
     if (count >= arraySize / 2) {
         resizeArray();
+        cout << RED << "Resizing array to " << arraySize << CLEAR << endl;
     }
 
     index = hashFunc(value);

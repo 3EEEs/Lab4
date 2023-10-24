@@ -49,10 +49,18 @@ void ChainHash::resizeTable() {
     //create a new table
     ChainLink **newTable = new ChainLink *[newSize]();
 
-    //copy the old table into the new table
     for (int i = 0; i < tableSize; i++) {
-        newTable[i] = theTable[i];
+        ChainLink *currentLink = theTable[i];
+
+        while (currentLink != nullptr) {
+            ChainLink *nextLink = currentLink->getNext();
+            int newIndex = hashFunc(currentLink->getValue());
+            currentLink->setNext(newTable[newIndex]);
+            newTable[newIndex] = currentLink;
+            currentLink = nextLink;
+        }
     }
+
 
     //delete the old table
     delete[] theTable;
@@ -60,6 +68,7 @@ void ChainHash::resizeTable() {
     //set the new table to the old table
     theTable = newTable;
 
+    cout << YEL << newSize << CLEAR << endl;
     //set the new table size
     tableSize = newSize;
 }
@@ -85,7 +94,7 @@ int ChainHash::nextPrime(int N) {
 
 int ChainHash::addItem(string value) {
     //Check if the table is too full
-    if (data >= tableSize * 2) {
+    if (count >= tableSize * 2) {
         // If the number of items is more than twice the table size, resize the table.
         resizeTable();
     }
@@ -100,7 +109,7 @@ int ChainHash::addItem(string value) {
     temp->setNext(theTable[index]);
     theTable[index] = temp;
 
-    data++;
+    count++;
 }
 
 bool ChainHash::findItem(string value) {
@@ -136,7 +145,7 @@ void ChainHash::removeItem(string value) {
                     prev->setNext(temp->getNext());
                 }
                 delete temp;
-                data--;
+                count--;
                 return;
             }
             prev = temp;

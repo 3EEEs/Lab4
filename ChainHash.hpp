@@ -7,12 +7,19 @@
 
 #include "ChainLink.hpp"
 
+//Colors
+#define RED "\e[0;31m"
+#define GRN "\e[0;32m"
+#define YEL "\e[0;33m"
+#define CLEAR "\e[0m"
+
 class ChainHash {
 private:
     int defaultSize = 7;
     int tableSize;
 
     int data;
+    int count;
 
     ChainLink** theTable;
 
