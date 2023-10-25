@@ -164,24 +164,21 @@ int main()
                 << "_empty_\ndog\nbear\nelk ape cat" << std::endl;
     std::cout << "The order might differ, but contents should not\n" << std::endl;
     std::cout << advList.displayTable();
-    
+
     std::cout << "\nDone testing addItem, findItem, removeItem, and display\n" << std::endl;
 #endif // TEST_ADV_DISPLAY
-    
+
 #ifdef TEST_THINK
     std::cout << "Testing thinking problem (growing ChainHash)\n" << std::endl;
     const int ADV_EXTRA = 6;
     std::string advExtraWords[ADV_EXTRA] = {"apple", "pine", "fir", "oak", "maple", "fig"};
-    
+
     ChainHash advGrow;
 
     for (int i = 0; i < ADV_SIZE; i++)
     {
         advGrow.addItem(advWords[i]);
     }
-
-    std::cout << advGrow.displayTable();//Temp
-
     for (int i = 0; i < ADV_EXTRA; i++)
     {
         advGrow.addItem(advExtraWords[i]);

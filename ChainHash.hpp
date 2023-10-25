@@ -38,8 +38,10 @@ public:
 
     int nextPrime(int n);
 
+    bool isPrime(int n);
+
     //Core Methods
-    int addItem(string value);
+    void addItem(string value);
 
     bool findItem(string value);
 

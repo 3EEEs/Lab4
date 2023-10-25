@@ -123,7 +123,7 @@ index = hashFunc(value);
 
     for (int i = 0; i < arraySize; i++) {
         if (theArray[index] == value) {
-            theArray[index] = "_deleted_";
+            theArray[index] = DELETED;
             count--;
             return;
         }

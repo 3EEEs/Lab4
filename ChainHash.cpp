@@ -44,20 +44,16 @@ int ChainHash::hashFunc(string key) {
 }
 
 void ChainHash::resizeTable() {
-    cout << "here" << endl;
-
     int oldTableSize = tableSize; //Increase the size by the next prime number
     tableSize = nextPrime(tableSize); //Set current
 
     //create a new table
     ChainLink **newTable = new ChainLink *[tableSize]();
 
-    for (int i = 0; i < tableSize * 2; i++) {
+    for (int i = 0; i < oldTableSize; i++) {
         ChainLink *currentLink = theTable[i];
 
-        while (currentLink->getNext() != nullptr) {
-            cout << "Adding item" << endl;
-
+        while (currentLink != nullptr) {
             // create a new item to add to the hash table
             ChainLink* temp = new ChainLink(currentLink->getValue());
 
@@ -65,12 +61,14 @@ void ChainHash::resizeTable() {
             int index = hashFunc(currentLink->getValue());
 
             // add to head of list at that location
-            temp->setNext(theTable[index]);
-            theTable[index] = temp;
+            temp->setNext(newTable[index]);
+            newTable[index] = temp;
 
-            count++;
+            currentLink = currentLink->getNext(); //Move to the next item in the old table
         }
     }
+
+    count = count;
 
     //delete the old table
     delete[] theTable;
@@ -78,39 +76,56 @@ void ChainHash::resizeTable() {
     //set the new table to the old table
     theTable = newTable;
 
-    cout << YEL << tableSize << CLEAR << endl;
     //set the new table size
     tableSize = tableSize;
 }
 
 int ChainHash::nextPrime(int N) {
-    return 13;
+    int doubleN = N * 2;
+    int upPrime = doubleN + 1;
+    int downPrime = doubleN - 1;
 
-    /*int prime = N;
-    bool found = false;
+    while (true) {
+        bool foundUp = isPrime(upPrime);
+        bool foundDown = isPrime(downPrime);
 
-    // Loop continuously until a prime number is found
-    while (!found) {
-        prime++;
-        found = true; // Assume prime until proven otherwise
-        for (int i = 2; i * i <= prime; i++) {
-            if (prime % i == 0) {
-                found = false; // It's not prime
-                break;
+        if (foundUp && foundDown) {
+            if (upPrime - doubleN <= doubleN - downPrime) {
+                return upPrime;
+            } else {
+                return downPrime;
             }
+        } else if (foundUp) {
+            return upPrime;
+        } else if (foundDown) {
+            return downPrime;
         }
-    }
 
-    return prime;*/
+        upPrime++;
+        downPrime--;
+    }
 }
 
-int ChainHash::addItem(string value) {
+bool ChainHash::isPrime(int n)
+{
+    // Corner case
+    if (n <= 1)
+        return false;
+
+    // Check from 2 to n-1
+    for (int i = 2; i <= n / 2; i++)
+        if (n % i == 0)
+            return false;
+
+    return true;
+}
+
+void ChainHash::addItem(string value) {
     //Check if the table is too full
      if (count >= tableSize * 2) {
         // If the number of items is more than twice the table size, resize the table.
-        cout << "Here/1" << endl;
         resizeTable();
-    }
+     }
 
     // create a new item to add to the hash table
     ChainLink* temp = new ChainLink(value);
